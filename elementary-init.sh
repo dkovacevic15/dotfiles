@@ -1,5 +1,5 @@
 apt update -y && sudo apt full-upgrade -y
-apt remove audience scratch-text-editor appcenter -y
+apt remove audience scratch-text-editor appcenter epiphany-browser -y
 apt install terminator vim gedit gedit-plugins gdebi transmission software-properties-gtk vlc autoconf -y
 
 git config --global user.name "Dusan Kovacevic"
@@ -45,9 +45,7 @@ sudo apt-get update
 sudo apt install virtualenv python3.6 -y
 
 # bash aliases here
-alias activate="source .venv/bin/activate"
-alias glog="git log --oneline --graph --decorate"
-alias gloga="git log --oneline --graph --all --decorate"
+
 
 gsettings set org.gnome.desktop.wm.keybindings toggle-maximized "['<Alt>w']"
 gsettings set org.gnome.desktop.wm.keybindings minimize "['<Alt>s']"
@@ -59,3 +57,10 @@ gsettings set org.gnome.desktop.wm.keybindings move-to-monitor-right "['<Alt><Sh
 
 gsettings set org.gnome.mutter workspaces-only-on-primary false
 
+# This thing makes wingpanel take *ages* to start
+sudo mv /etc/xdg/autostart/at-spi-dbus-bus.desktop /etc/xdg/autostart/at-spi-dbus-bus.desktop.disabled
+
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0DF731E45CE24F27EEEB1450EFDC8610341D9410
+echo deb http://repository.spotify.com stable non-free | sudo tee /etc/apt/sources.list.d/spotify.list
+sudo apt-get update
+sudo apt-get install spotify-client
